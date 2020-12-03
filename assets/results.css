@@ -3,9 +3,17 @@
     --bulma-primary: hsl(171, 100%, 41%)
 }
 
+body {
+    height: 100vh;
+}
+
 section {
     background-color: var(--transparent-bg);
     border-radius: 0 .25rem .25rem .25rem;
+}
+
+nav {
+    border-bottom: none !important;
 }
 
 #nav-mobile {
@@ -23,6 +31,11 @@ section {
 
 .active {
     background-color: rgba(60, 60, 60, 0.8);
+}
+
+.card-body img {
+ max-width: 100%;
+ height: auto;
 }
 
 .hide {

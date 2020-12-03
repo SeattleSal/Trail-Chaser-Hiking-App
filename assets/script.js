@@ -13,6 +13,7 @@ $('#myModal').modal('show')
 // This button events apply to the modal and what happens when each of the buttons are clicked.
 $('#closeBtn').on('click', handleGeoLocation)
 $('nav').on('click', '.custom-btn', handleSections)
+$('#map-btns').on('click', initMap)
 
 // Initialize and add the map
 function initMap() {

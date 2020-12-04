@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background-color: var(--transparent-bg);
+    background-color: rgba(60, 60, 60, 0.8);
 }
 
 section {
@@ -54,7 +54,7 @@ nav {
 @media screen and (max-width: 768px) {
 
     body {
-        height: auto;
+        height: 100vh;
     }
 
     #nav-desktop {
@@ -63,5 +63,14 @@ nav {
 
     #nav-mobile {
         display: flex;
+    }
+    
+    .card {
+        height: 15vh;
+    }
+
+    .card-body {
+        display: flex;
+        flex-flow: row wrap;
     }
 }

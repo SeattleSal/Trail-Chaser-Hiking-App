@@ -7,6 +7,10 @@ body {
     height: 100vh;
 }
 
+header {
+    background-color: var(--transparent-bg);
+}
+
 section {
     background-color: var(--transparent-bg);
     border-radius: 0 .25rem .25rem .25rem;

@@ -15,7 +15,7 @@
   <title>Trail Chasers: Your Next Hike</title>
 </head>
 
-<body class="d-flex justify-content-center align-items-center">
+<body class="d-flex justify-content-center align-items-center flex-column">
 
   <div class="modal" id="myModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -36,6 +36,23 @@
       </div>
     </div>
   </div>
+
+  <header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#">Trail Chasers</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon navbar-light"></span>
+      </button>
+
+      <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </header>
 
   <main class="col-lg-8">
 
@@ -69,35 +86,35 @@
     </section>
 
     <section class="hide col-12 p-4 d-flex flex-row flex-wrap justify-content-around" id="weather-section">
-      <div class="card text-center col-xl-2">
+      <div class="card text-center col-lg-2">
         <div class="card-body">
           <img id="weathericon0" alt="Weather Icon">
           <h5 id='weatherday0' class="card-title"></h5>
           <p id="weatherinfo0" class="card-text"></p>
         </div>
       </div>
-      <div class="card text-center col-xl-2">
+      <div class="card text-center col-lg-2">
         <div class="card-body">
           <img id="weathericon1" alt="Weather Icon">
           <h5 id='weatherday1' class="card-title"></h5>
           <p id="weatherinfo1" class="card-text"></p>
         </div>
       </div>
-      <div class="card text-center col-xl-2">
+      <div class="card text-center col-lg-2">
         <div class="card-body">
           <img id="weathericon2" alt="Weather Icon">
           <h5 id='weatherday2' class="card-title"></h5>
           <p id="weatherinfo2" class="card-text"></p>
         </div>
       </div>
-      <div class="card text-center col-xl-2">
+      <div class="card text-center col-lg-2">
         <div class="card-body">
           <img id="weathericon3" alt="Weather Icon">
           <h5 id='weatherday3' class="card-title"></h5>
           <p id="weatherinfo3" class="card-text"></p>
         </div>
       </div>
-      <div class="card text-center col-xl-2">
+      <div class="card text-center col-lg-2">
         <div class="card-body">
           <img id="weathericon4" alt="Weather Icon">
           <h5 id='weatherday4' class="card-title"></h5>

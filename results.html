@@ -38,18 +38,19 @@
   </div>
 
   <header class="fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="#">Trail Chasers</a>
+    <nav class="navbar navbar-expand-lg navbar-dark  d-flex justify-content-between">
+      <a class="navbar-brand" href="./index.html">TR<i class="fas fa-mountain"></i>IL Chasers</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon navbar-light"></span>
       </button>
-
-      <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+      <div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Find a hike!" aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Onward</button>
+          </form>
+        </div>
       </div>
     </nav>
   </header>
@@ -64,7 +65,7 @@
     </nav>
 
     <nav id="nav-mobile" class="nav nav-tabs col-md-8 mt-5">
-      <button class="custom-btn rounded-top col-2 text-white p-1" data-section='info'><i
+      <button class="custom-btn rounded-top col-2 text-white p-1 active" data-section='info'><i
           class="text-white fas fa-info-circle"></i></button>
       <button class="custom-btn rounded-top col-2 text-white p-1" data-section='weather'><i
           class="text-white fas fa-cloud"></i></button>

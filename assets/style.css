@@ -41,24 +41,13 @@ body {
     background-color: var(--transparent-bg);
 }
 
-.modal-content {
+/* Not sure if this is Sally's */
+/* .modal-content {
     background-color: white;
     padding: 5px 10px;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px;
-}
-
-#map {
-    height: 600px;
-    width: 100%;
-}
-
-#bottom-panel {
-    border-radius: 5px;
-    background-color: white;
-    overflow: scroll;
-    height: 600px;
-}
+} */
 
 .card,
 #hikeImage {
@@ -73,17 +62,6 @@ body {
 .fa-star {
     font-size: .8rem;
     color: gold;
-}
-
-#weathericon0,
-#weathericon1,
-#weathericon2,
-#weathericon3,
-#weathericon4,
-#weathericon5,
-#weathericon6 {
-    background-color: var(--bulma-primary);
-    border-radius: 5px;
 }
 
 /* color classes for the difficulty */

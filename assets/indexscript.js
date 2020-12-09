@@ -3,7 +3,8 @@
 var apiID = "200970639-981a2550ac3c48f2579397ecf3a9b65e";
 var queryURL;
 var resultsEl = $("#results");
-var formEl = $("#form-group");
+var formEl = $(".section");
+console.log(formEl);
 var hikesReturned;
 var userHikeSelected;
 var locationInput;
@@ -17,6 +18,10 @@ var savedCriteria = JSON.parse(localStorage.getItem("savedCriteria")) || [];
 
 function init() {
   // show saved criteria if stored
+  if (formEl.css("display") === "none"){
+    formEl.css("display", "block");
+  }
+
   if (savedCriteria != []) {
     $("#location").val(savedCriteria.location);
     $("#length").val(savedCriteria.length);
@@ -103,15 +108,15 @@ function handleResults(response) {
     $('#inputModal').modal('show');
     loopIndexMax = 0; // prevent loop from starting
   } else if(numResults > 0 && numResults <6) {
-    // formEl.empty();
-    // let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
-    // resultsEl.append(searchAgainBtn);
+    formEl.css("display", "none");
+    let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
+    resultsEl.append(searchAgainBtn);
     loopIndexMax = numResults;
   } else { // more than 5 results so more than 1 page of results
-    // formEl.empty();
+    formEl.css("display", "none");
     resultsEl.empty(); // clear results section
-    // let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
-    // resultsEl.append(searchAgainBtn);
+    let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
+    resultsEl.append(searchAgainBtn);
     let nextBtn = `<button type="button" class="btn btn-primary" id="next">Next Results &raquo;</button>`;  
     resultsEl.append(nextBtn);
     loopIndexMax = 5;
@@ -224,7 +229,8 @@ $('#results').on("click", "#next", function () {
 // })
 
 // listen for search again to be clicked
-// $('#results').on("click", "#searchAgain", function() {
-//   resultsEl.empty();
-//   init();
-// })
+$('#results').on("click", "#again", function() {
+  console.log("search again!");
+  resultsEl.empty();
+  init();
+})

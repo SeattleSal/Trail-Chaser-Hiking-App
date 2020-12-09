@@ -91,3 +91,8 @@ body {
 #card-container {
     flex-wrap: wrap;
 }
+
+#next {
+    margin-left: 9rem;
+    margin-bottom: 1rem;
+}

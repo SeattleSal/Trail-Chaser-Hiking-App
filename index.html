@@ -15,6 +15,22 @@
 
 <body>
 
+  <!-- modal for error/no trails found message -->
+  <div class="modal" id="inputModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <div class="modal-body">
+          <p>No trails found, please try again!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="closeBtn" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <header class="column hero is-centered">
     <div class="hero-body">
       <div class="container">
@@ -69,7 +85,7 @@
       </label>
 
       <div type="button" id="btn-container" class="column mt-3">
-        <button class="btn btn-primary" id="findBtn">Find YOUR Trails!</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="findBtn">Find YOUR Trails!</button>
       </div>
     </div>
     </section>

@@ -15,7 +15,7 @@
   <title>Trail Chasers: Your Next Hike</title>
 </head>
 
-<body>
+<body class="d-flex justify-content-center align-items-center flex-column">
 
   <div class="modal" id="myModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -37,35 +37,41 @@
     </div>
   </div>
 
-  <!-- <header class="column hero is-centered">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title has-text-darker is-size-1" id="tcTitle"><a href="./index.html">
-            <i class="fas fa-hiking"></i> Trail Chasers</a>
-        </h1>
-        <h2 class="subtitle is-size-4">
-          Your new hiking buddy!
-        </h2>
+  <header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark  d-flex justify-content-between">
+      <a class="navbar-brand" href="./index.html">TR<i class="fas fa-mountain"></i>IL Chasers</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon navbar-light"></span>
+      </button>
+      <div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Find a hike!" aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Onward</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </header> -->
-  <main class="col-lg-12 justify-content-center align-self-center">
+    </nav>
+  </header>
+
+  <main class="col-lg-8">
 
     <nav id="nav-desktop" class="nav nav-tabs col-md-8 mt-4">
-      <button class="custom-btn rounded-top col-3 text-white" data-section='info'>Info</button>
+      <button class="custom-btn rounded-top col-3 text-white active" data-section='info'>Info</button>
       <button class="custom-btn rounded-top col-3 text-white" data-section='weather'>Weather</button>
-      <button class="custom-btn rounded-top col-3 text-white" data-section='map'>Map</button>
+      <button class="custom-btn  map-btns rounded-top col-3 text-white" data-section='map'>Map</button>
       <button class="custom-btn rounded-top col-3 text-white" data-section='directions'>Directions</button>
     </nav>
 
-    <nav id="nav-mobile" class="nav nav-tabs col-md-8 mt-4">
-      <button class="custom-btn rounded-top col-3 text-white" data-section='info'><i
+    <nav id="nav-mobile" class="nav nav-tabs col-md-8 mt-5">
+      <button class="custom-btn rounded-top col-2 text-white p-1 active" data-section='info'><i
           class="text-white fas fa-info-circle"></i></button>
-      <button class="custom-btn rounded-top col-3 text-white" data-section='weather'><i
+      <button class="custom-btn rounded-top col-2 text-white p-1" data-section='weather'><i
           class="text-white fas fa-cloud"></i></button>
-      <button class="custom-btn rounded-top col-3 text-white" data-section='map'><i
+      <button class="custom-btn map-btns rounded-top col-2 text-white p-1" data-section='map'><i
           class="text-white fas fa-map-pin"></i></button>
-      <button class="custom-btn rounded-top col-3 text-white" data-section='directions'><i
+      <button class="custom-btn rounded-top col-2 text-white p-1" data-section='directions'><i
           class="text-white fas fa-map-signs"></i></button>
     </nav>
 
@@ -81,35 +87,35 @@
     </section>
 
     <section class="hide col-12 p-4 d-flex flex-row flex-wrap justify-content-around" id="weather-section">
-      <div class="card text-center col-md-2">
+      <div class="card text-center">
         <div class="card-body">
           <img id="weathericon0" alt="Weather Icon">
-          <h5 id='weatherday0' class="card-title"></h5>
+          <h5 id='weatherday0' class="card-title m-0"></h5>
           <p id="weatherinfo0" class="card-text"></p>
         </div>
       </div>
-      <div class="card text-center col-md-2">
+      <div class="card text-center">
         <div class="card-body">
           <img id="weathericon1" alt="Weather Icon">
           <h5 id='weatherday1' class="card-title"></h5>
           <p id="weatherinfo1" class="card-text"></p>
         </div>
       </div>
-      <div class="card text-center col-md-2">
+      <div class="card text-center">
         <div class="card-body">
           <img id="weathericon2" alt="Weather Icon">
           <h5 id='weatherday2' class="card-title"></h5>
           <p id="weatherinfo2" class="card-text"></p>
         </div>
       </div>
-      <div class="card text-center col-md-2">
+      <div class="card text-center">
         <div class="card-body">
           <img id="weathericon3" alt="Weather Icon">
           <h5 id='weatherday3' class="card-title"></h5>
           <p id="weatherinfo3" class="card-text"></p>
         </div>
       </div>
-      <div class="card text-center col-md-2">
+      <div class="card text-center">
         <div class="card-body">
           <img id="weathericon4" alt="Weather Icon">
           <h5 id='weatherday4' class="card-title"></h5>

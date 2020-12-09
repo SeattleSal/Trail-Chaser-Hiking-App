@@ -13,6 +13,7 @@ $('#myModal').modal('show')
 // This button events apply to the modal and what happens when each of the buttons are clicked.
 $('#closeBtn').on('click', handleGeoLocation)
 $('nav').on('click', '.custom-btn', handleSections)
+$('#map-btns').on('click', initMap)
 
 // Initialize and add the map
 function initMap() {
@@ -155,6 +156,10 @@ function handleSections(event) {
     $infoEl.removeClass('hide')
     // }, 1000)
     // setTimeout(() => $homeEl.removeClass('trans'), 1050)
+
+    // THEN we remove the class active from the other nav tabs and add it to the tab showing.
+    $('.custom-btn').removeClass('active')
+    $(this).addClass('active')
   }
 
   if ($(this).data('section') == 'weather') {
@@ -167,6 +172,10 @@ function handleSections(event) {
     $weatherEl.removeClass('hide')
     // }, 1000)
     // setTimeout(() => $homeEl.removeClass('trans'), 1050)
+
+    // THEN we remove the class active from the other nav tabs and add it to the tab showing.
+    $('.custom-btn').removeClass('active')
+    $(this).addClass('active')
   }
 
   if ($(this).data('section') == 'map') {
@@ -179,6 +188,10 @@ function handleSections(event) {
     $mapEl.removeClass('hide')
     // }, 1000)
     // setTimeout(() => $homeEl.removeClass('trans'), 1050)
+
+    // THEN we remove the class active from the other nav tabs and add it to the tab showing.
+    $('.custom-btn').removeClass('active')
+    $(this).addClass('active')
   }
 
   if ($(this).data('section') == 'directions') {
@@ -191,6 +204,10 @@ function handleSections(event) {
     $directionsEl.removeClass('hide')
     // }, 1000)
     // setTimeout(() => $homeEl.removeClass('trans'), 1050)
+
+    // THEN we remove the class active from the other nav tabs and add it to the tab showing.
+    $('.custom-btn').removeClass('active')
+    $(this).addClass('active')
   }
 
 };

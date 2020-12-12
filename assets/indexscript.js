@@ -86,6 +86,7 @@ function handleSearch() {
 
 // handleResults - display results of first 5 results in card form
 function handleResults(response) {
+  // create a page that on buttons clicks would change which part of the array is shown. If array length is shorter than page showings append prev button and if the array length is longer than append a next button.
   hikesReturned = response.trails; // store for use when user clicks selection
   console.log(response.trails); // returns 10 trails max with current query
   // resultsEl.empty(); // clear results section

@@ -107,12 +107,7 @@ function handleResults(response) {
   } else if (numResults > 0 && numResults < 6) {
     loopIndexMax = numResults;
   } else { // more than 5 results so more than 1 page of results
-    // formEl.empty();
     resultsEl.empty(); // clear results section
-    // let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
-    // resultsEl.append(searchAgainBtn);
-    // const nextBtn = `<button type="button" class="btn btn-primary" id="next">Next Results &raquo;</button>`;
-    // resultsEl.append(nextBtn);
     loopIndexMax = 5;
   }
 

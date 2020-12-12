@@ -13,6 +13,9 @@ var starInput;
 var lat;
 var lon;
 
+let startIndex = 0;
+let loopIndexMax = 0;
+
 var savedCriteria = JSON.parse(localStorage.getItem("savedCriteria")) || [];
 
 function init() {
@@ -90,16 +93,14 @@ function handleResults(response) {
   hikesReturned = response.trails; // store for use when user clicks selection
   console.log(response.trails); // returns 10 trails max with current query
   // resultsEl.empty(); // clear results section
-  
+
 
   let numResults = response.trails.length; // if there are results, there will always be at least one
   let numPages = Math.ceil(numResults / 5); // 5 results per page
   console.log(numPages);
 
-  let startIndex = 0;
-  let loopIndexMax;
-  // to do - figure out how to treat less than 5 results
-  // to do - loop through up to 20 results
+  // startIndex = 0;
+  // loopIndexMax = 0;
 
   if (numResults === 0) {
     $('#inputModal').modal('show');
@@ -137,7 +138,7 @@ const handlePageNumbers = (start, end) => {
 // display 5 result hikes per page
 function displayResults(startIndex, loopIndexMax) {
 
-  handlePageNumbers(startIndex ,loopIndexMax)
+  handlePageNumbers(startIndex, loopIndexMax)
 
   for (let i = startIndex; i < loopIndexMax; i++) {
     console.log(i)
@@ -227,10 +228,13 @@ $("#results").on("click", ".card", function () {
 
 // listen for next button to show next page of results
 $('#results').on("click", "#next", () => {
-  // console.log("next results please");
-  // TO DO - how to get dynamic indexes?
   resultsEl.empty(); // clear results section
-  displayResults(5, 10);
+  displayResults(startIndex += 5, loopIndexMax += 5);
+})
+
+$('#results').on("click", "#prev-btn", () => {
+  resultsEl.empty(); // clear results section
+  displayResults(startIndex -= 5, loopIndexMax -= 5);
 })
 
 // TO DO  - Listen for previous button

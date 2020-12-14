@@ -4,7 +4,6 @@ var apiID = "200970639-981a2550ac3c48f2579397ecf3a9b65e";
 var queryURL;
 var resultsEl = $("#results");
 var formEl = $(".section");
-console.log(formEl);
 var hikesReturned;
 var userHikeSelected;
 var locationInput;
@@ -13,6 +12,8 @@ var lengthInput;
 var starInput;
 var lat;
 var lon;
+let startIndex = 0;
+let loopIndexMax = 0;
 
 var savedCriteria = JSON.parse(localStorage.getItem("savedCriteria")) || [];
 
@@ -44,7 +45,6 @@ function handleUserInfo() {
 
     // make ajax call
     handleCity();
-    // handleSearch();
 
     // IF the user doesnt input a city/location name
     if (locationInput === ""){
@@ -62,8 +62,6 @@ function handleUserInfo() {
             length: lengthInput, 
             ratingInput: starInput
         };
-
-        //savedCriteria.push(userData)
 
         localStorage.setItem("savedCriteria", JSON.stringify(userData));
         //function that appends info into form
@@ -99,8 +97,8 @@ function handleResults(response) {
   let numPages = Math.ceil(numResults/5); // 5 results per page
   console.log(numPages);
   
-  let startIndex = 0;
-  let loopIndexMax;
+  // let startIndex = 0;
+  // let loopIndexMax;
   // to do - figure out how to treat less than 5 results
   // to do - loop through up to 20 results
 
@@ -109,16 +107,16 @@ function handleResults(response) {
     loopIndexMax = 0; // prevent loop from starting
   } else if(numResults > 0 && numResults <6) {
     formEl.css("display", "none");
-    let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
-    resultsEl.append(searchAgainBtn);
+    // let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
+    // resultsEl.append(searchAgainBtn);
     loopIndexMax = numResults;
   } else { // more than 5 results so more than 1 page of results
     formEl.css("display", "none");
     resultsEl.empty(); // clear results section
-    let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
-    resultsEl.append(searchAgainBtn);
-    let nextBtn = `<button type="button" class="btn btn-primary" id="next">Next Results &raquo;</button>`;  
-    resultsEl.append(nextBtn);
+    // let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
+    // resultsEl.append(searchAgainBtn);
+    // let nextBtn = `<button type="button" class="btn btn-primary" id="next">Next Results &raquo;</button>`;  
+    // resultsEl.append(nextBtn);
     loopIndexMax = 5;
   }
 
@@ -126,8 +124,34 @@ function handleResults(response) {
 
 }
 
+// create a page that on button clicks would change which part of the array is shown, If array length is shorter than page showings append prv button and if the array length is longer than append a next button.
+// (from TM)
+const handlePageNumbers = (start, end) => {
+  const searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
+  const nextBtn = `<button type="button" class="btn btn-primary" id="next">More »</button>`;
+  const prevBtn = `<button type="button" class="btn btn-primary" id="prev-btn">« Previous</button>`;
+
+  if (hikesReturned.length > 5) {
+    resultsEl.append(searchAgainBtn);
+    resultsEl.append(nextBtn)
+  }
+  if (start >= 5) {
+    resultsEl.empty()
+    resultsEl.append(prevBtn)
+    resultsEl.append(searchAgainBtn);
+    resultsEl.append(nextBtn)
+  }
+  if (hikesReturned.length === end) {
+    resultsEl.empty()
+    resultsEl.append(prevBtn)
+    resultsEl.append(searchAgainBtn);
+  }
+}
+
 // display 5 result hikes per page
 function displayResults(startIndex, loopIndexMax) {
+
+  handlePageNumbers(startIndex, loopIndexMax);
 
   for (let i = startIndex; i < loopIndexMax; i++) {
     // get difficulty and assign color class
@@ -214,19 +238,19 @@ $("#results").on("click", ".card", function () {
   window.location.href = "results.html";
 });
 
-// listen for next button to show next page of results
+// listen for next button to show next page of results (input from TM)
 $('#results').on("click", "#next", function () {
   // console.log("next results please");
   // TO DO - how to get dynamic indexes?
   resultsEl.empty(); // clear results section
-  displayResults(5, 10);
+  displayResults(startIndex +=5, loopIndexMax += 5);
 })
 
-// TO DO  - Listen for previous button
-// $('#results').on("click", "#next", function () {
-  // console.log("prior results please");
-  // displayResults(1,5);
-// })
+// Listen for previous button (input from TM)
+$('#results').on("click", "#prev-btn", function () {
+  resultsEl.empty(); // clear results section
+  displayResults(startIndex -= 5, loopIndexMax -=5);
+})
 
 // listen for search again to be clicked
 $('#results').on("click", "#again", function() {

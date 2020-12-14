@@ -92,7 +92,8 @@ body {
     flex-wrap: wrap;
 }
 
-#next {
-    margin-left: 9rem;
+#next, #again, #prev-btn {
+    margin-left: 3rem;
     margin-bottom: 1rem;
+    width:30%;
 }

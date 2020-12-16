@@ -13,12 +13,15 @@ var lengthInput;
 var starInput;
 var lat;
 var lon;
-let startIndex = 0;
-let loopIndexMax = 0;
+let startIndex;
+let loopIndexMax;
 
 var savedCriteria = JSON.parse(localStorage.getItem("savedCriteria")) || [];
 
 function init() {
+  startIndex = 0;
+  loopIndexMax = 0;
+
   // show saved criteria if stored
   if (formEl.css("display") === "none"){
     formEl.css("display", "block");
@@ -92,32 +95,21 @@ function handleSearch() {
 function handleResults(response) {
   hikesReturned = response.trails; // store for use when user clicks selection
   console.log(response.trails); // returns 10 trails max with current query
-  // resultsEl.empty(); // clear results section
+  resultsEl.empty(); // clear results section
 
   let numResults = response.trails.length; // if there are results, there will always be at least one
   let numPages = Math.ceil(numResults/5); // 5 results per page
   console.log(numPages);
   
-  // let startIndex = 0;
-  // let loopIndexMax;
-  // to do - figure out how to treat less than 5 results
-  // to do - loop through up to 20 results
-
   if (numResults === 0){
     $('#inputModal').modal('show');
     loopIndexMax = 0; // prevent loop from starting
   } else if(numResults > 0 && numResults <6) {
     formEl.css("display", "none");
-    // let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
-    // resultsEl.append(searchAgainBtn);
     loopIndexMax = numResults;
   } else { // more than 5 results so more than 1 page of results
     formEl.css("display", "none");
-    resultsEl.empty(); // clear results section
-    // let searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
-    // resultsEl.append(searchAgainBtn);
-    // let nextBtn = `<button type="button" class="btn btn-primary" id="next">Next Results &raquo;</button>`;  
-    // resultsEl.append(nextBtn);
+    // resultsEl.empty(); // clear results section
     loopIndexMax = 5;
   }
 
@@ -201,7 +193,6 @@ function displayResults(startIndex, loopIndexMax) {
           </div> 
       </div> 
     </div>`;
-    
     resultsEl.append(card);
     $(".index-difficulty").css("textTransform", "capitalize");
   }
@@ -241,8 +232,6 @@ $("#results").on("click", ".card", function () {
 
 // listen for next button to show next page of results (input from TM)
 $('#results').on("click", "#next", function () {
-  // console.log("next results please");
-  // TO DO - how to get dynamic indexes?
   resultsEl.empty(); // clear results section
   displayResults(startIndex +=5, loopIndexMax += 5);
 })
@@ -255,7 +244,6 @@ $('#results').on("click", "#prev-btn", function () {
 
 // listen for search again to be clicked
 $('#results').on("click", "#again", function() {
-  console.log("search again!");
   resultsEl.empty();
   init();
 })

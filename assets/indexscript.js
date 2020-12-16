@@ -94,12 +94,10 @@ function handleSearch() {
 // handleResults - display results of first 5 results in card form
 function handleResults(response) {
   hikesReturned = response.trails; // store for use when user clicks selection
-  console.log(response.trails); // returns 10 trails max with current query
   resultsEl.empty(); // clear results section
 
   let numResults = response.trails.length; // if there are results, there will always be at least one
   let numPages = Math.ceil(numResults/5); // 5 results per page
-  console.log(numPages);
   
   if (numResults === 0){
     $('#inputModal').modal('show');
@@ -125,19 +123,19 @@ const handlePageNumbers = (start, end) => {
   const prevBtn = `<button type="button" class="btn btn-primary" id="prev-btn"><i class="fas fa-angle-double-left"></i> Previous</button>`;
 
   if (hikesReturned.length > 5) {
-    resultsEl.append(searchAgainBtn);
-    resultsEl.append(nextBtn)
+    buttonsEl.append(searchAgainBtn);
+    buttonsEl.append(nextBtn)
   }
   if (start >= 5) {
-    resultsEl.empty()
-    resultsEl.append(prevBtn)
-    resultsEl.append(searchAgainBtn);
-    resultsEl.append(nextBtn)
+    buttonsEl.empty()
+    buttonsEl.append(prevBtn)
+    buttonsEl.append(searchAgainBtn);
+    buttonsEl.append(nextBtn)
   }
   if (hikesReturned.length === end) {
-    resultsEl.empty()
-    resultsEl.append(prevBtn)
-    resultsEl.append(searchAgainBtn);
+    buttonsEl.empty()
+    buttonsEl.append(prevBtn)
+    buttonsEl.append(searchAgainBtn);
   }
 }
 
@@ -231,19 +229,22 @@ $("#results").on("click", ".card", function () {
 });
 
 // listen for next button to show next page of results (input from TM)
-$('#results').on("click", "#next", function () {
+$('#buttons').on("click", "#next", function () {
+  buttonsEl.empty();
   resultsEl.empty(); // clear results section
   displayResults(startIndex +=5, loopIndexMax += 5);
 })
 
 // Listen for previous button (input from TM)
-$('#results').on("click", "#prev-btn", function () {
+$('#buttons').on("click", "#prev-btn", function () {
+  buttonsEl.empty();
   resultsEl.empty(); // clear results section
   displayResults(startIndex -= 5, loopIndexMax -=5);
 })
 
 // listen for search again to be clicked
-$('#results').on("click", "#again", function() {
+$('#buttons').on("click", "#again", function() {
+  buttonsEl.empty();
   resultsEl.empty();
   init();
 })

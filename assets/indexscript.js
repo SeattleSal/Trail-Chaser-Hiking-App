@@ -2,8 +2,9 @@
 // VARIABLES
 var apiID = "200970639-981a2550ac3c48f2579397ecf3a9b65e";
 var queryURL;
-var resultsEl = $("#results");
 var formEl = $(".section");
+var resultsEl = $("#results");
+var buttonsEl = $("#buttons");
 var hikesReturned;
 var userHikeSelected;
 var locationInput;
@@ -75,7 +76,7 @@ function handleUserInfo() {
 
 // handleSearch - make ajax call and get response info for hikes to appear
 function handleSearch() {
-  queryURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${radiusInput}&minLength=${lengthInput}&minStars=${starInput}&key=${apiID}`;
+  queryURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${radiusInput}&minLength=${lengthInput}&minStars=${starInput}&maxResults=20&key=${apiID}`;
   // Perfoming an AJAX GET request to our queryURL
   $.ajax({
     url: queryURL,
@@ -128,8 +129,8 @@ function handleResults(response) {
 // (from TM)
 const handlePageNumbers = (start, end) => {
   const searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;  
-  const nextBtn = `<button type="button" class="btn btn-primary" id="next">More »</button>`;
-  const prevBtn = `<button type="button" class="btn btn-primary" id="prev-btn">« Previous</button>`;
+  const nextBtn = `<button type="button" class="btn btn-primary" id="next">More <i class="fas fa-angle-double-right"></i></button>`;
+  const prevBtn = `<button type="button" class="btn btn-primary" id="prev-btn"><i class="fas fa-angle-double-left"></i> Previous</button>`;
 
   if (hikesReturned.length > 5) {
     resultsEl.append(searchAgainBtn);

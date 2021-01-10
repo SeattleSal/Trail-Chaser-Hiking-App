@@ -2,8 +2,9 @@
 // VARIABLES
 var apiID = "200970639-981a2550ac3c48f2579397ecf3a9b65e";
 var queryURL;
+var formEl = $(".section");
 var resultsEl = $("#results");
-var formEl = $("#form-group");
+var buttonsEl = $("#buttons");
 var hikesReturned;
 var userHikeSelected;
 var locationInput;
@@ -12,6 +13,8 @@ var lengthInput;
 var starInput;
 var lat;
 var lon;
+let startIndex;
+let loopIndexMax;
 
 let startIndex = 0;
 let loopIndexMax = 0;
@@ -19,7 +22,14 @@ let loopIndexMax = 0;
 var savedCriteria = JSON.parse(localStorage.getItem("savedCriteria")) || [];
 
 function init() {
+  startIndex = 0;
+  loopIndexMax = 0;
+
   // show saved criteria if stored
+  if (formEl.css("display") === "none") {
+    formEl.css("display", "block");
+  }
+
   if (savedCriteria != []) {
     $("#location").val(savedCriteria.location);
     $("#length").val(savedCriteria.length);
@@ -42,7 +52,6 @@ function handleUserInfo() {
 
   // make ajax call
   handleCity();
-  // handleSearch();
 
   // IF the user doesnt input a city/location name
   if (locationInput === "") {
@@ -61,8 +70,6 @@ function handleUserInfo() {
       ratingInput: starInput
     };
 
-    //savedCriteria.push(userData)
-
     localStorage.setItem("savedCriteria", JSON.stringify(userData));
     //function that appends info into form
 
@@ -71,11 +78,17 @@ function handleUserInfo() {
     localStorage.clear("savedCriteria");
   };
 
+  //savedCriteria.push(userData)
+
+  localStorage.setItem("savedCriteria", JSON.stringify(userData));
+  //function that appends info into form
+
 }
+
 
 // handleSearch - make ajax call and get response info for hikes to appear
 function handleSearch() {
-  queryURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${radiusInput}&minLength=${lengthInput}&minStars=${starInput}&key=${apiID}`;
+  queryURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${radiusInput}&minLength=${lengthInput}&minStars=${starInput}&maxResults=20&key=${apiID}`;
   // Perfoming an AJAX GET request to our queryURL
   $.ajax({
     url: queryURL,
@@ -91,24 +104,21 @@ function handleSearch() {
 function handleResults(response) {
 
   hikesReturned = response.trails; // store for use when user clicks selection
-  console.log(response.trails); // returns 10 trails max with current query
-  // resultsEl.empty(); // clear results section
+  resultsEl.empty(); // clear results section
 
 
   let numResults = response.trails.length; // if there are results, there will always be at least one
   let numPages = Math.ceil(numResults / 5); // 5 results per page
-  console.log(numPages);
-
-  // startIndex = 0;
-  // loopIndexMax = 0;
 
   if (numResults === 0) {
     $('#inputModal').modal('show');
     loopIndexMax = 0; // prevent loop from starting
   } else if (numResults > 0 && numResults < 6) {
+    formEl.css("display", "none");
     loopIndexMax = numResults;
   } else { // more than 5 results so more than 1 page of results
-    resultsEl.empty(); // clear results section
+    formEl.css("display", "none");
+    // resultsEl.empty(); // clear results section
     loopIndexMax = 5;
   }
 
@@ -117,28 +127,33 @@ function handleResults(response) {
 }
 
 // create a page that on button clicks would change which part of the array is shown, If array length is shorter than page showings append prv button and if the array length is longer than append a next button.
+// (from TM)
 const handlePageNumbers = (start, end) => {
-  const nextBtn = `<button type="button" class="btn btn-primary" id="next">More &raquo;</button>`;
-  const prevBtn = `<button type="button" class="btn btn-primary" id="prev-btn">Previous &raquo;</button>`;
+  const searchAgainBtn = `<button type="button" class="btn btn-primary" id="again">New Search</button>`;
+  const nextBtn = `<button type="button" class="btn btn-primary" id="next">More <i class="fas fa-angle-double-right"></i></button>`;
+  const prevBtn = `<button type="button" class="btn btn-primary" id="prev-btn"><i class="fas fa-angle-double-left"></i> Previous</button>`;
 
   if (hikesReturned.length > 5) {
-    resultsEl.append(nextBtn)
+    buttonsEl.append(searchAgainBtn);
+    buttonsEl.append(nextBtn)
   }
   if (start >= 5) {
-    resultsEl.empty()
-    resultsEl.append(prevBtn)
-    resultsEl.append(nextBtn)
+    buttonsEl.empty()
+    buttonsEl.append(prevBtn)
+    buttonsEl.append(searchAgainBtn);
+    buttonsEl.append(nextBtn)
   }
   if (hikesReturned.length === end) {
-    resultsEl.empty()
-    resultsEl.append(prevBtn)
+    buttonsEl.empty()
+    buttonsEl.append(prevBtn)
+    buttonsEl.append(searchAgainBtn);
   }
 }
 
 // display 5 result hikes per page
 function displayResults(startIndex, loopIndexMax) {
 
-  handlePageNumbers(startIndex, loopIndexMax)
+  handlePageNumbers(startIndex, loopIndexMax);
 
   for (let i = startIndex; i < loopIndexMax; i++) {
     console.log(i)
@@ -188,7 +203,6 @@ function displayResults(startIndex, loopIndexMax) {
           </div> 
       </div> 
     </div>`;
-
     resultsEl.append(card);
     $(".index-difficulty").css("textTransform", "capitalize");
   }
@@ -226,25 +240,23 @@ $("#results").on("click", ".card", function () {
   window.location.href = "results.html";
 });
 
-// listen for next button to show next page of results
-$('#results').on("click", "#next", () => {
+// listen for next button to show next page of results (input from TM)
+$('#buttons').on("click", "#next", function () {
+  buttonsEl.empty();
   resultsEl.empty(); // clear results section
   displayResults(startIndex += 5, loopIndexMax += 5);
 })
 
-$('#results').on("click", "#prev-btn", () => {
+// Listen for previous button (input from TM)
+$('#buttons').on("click", "#prev-btn", function () {
+  buttonsEl.empty();
   resultsEl.empty(); // clear results section
   displayResults(startIndex -= 5, loopIndexMax -= 5);
 })
 
-// TO DO  - Listen for previous button
-// $('#results').on("click", "#next", function () {
-  // console.log("prior results please");
-  // displayResults(1,5);
-// })
-
 // listen for search again to be clicked
-// $('#results').on("click", "#searchAgain", function() {
-//   resultsEl.empty();
-//   init();
-// })
+$('#buttons').on("click", "#again", function () {
+  buttonsEl.empty();
+  resultsEl.empty();
+  init();
+})

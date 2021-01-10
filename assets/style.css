@@ -18,6 +18,10 @@ nav {
     border-bottom: none !important;
 }
 
+.navbar-nav > li{
+    margin: auto;
+  }
+
 .fa-mountain {
     font-size: .85rem;
     color: var(--bulma-primary);

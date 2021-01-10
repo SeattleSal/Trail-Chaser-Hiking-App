@@ -1,0 +1,30 @@
+{
+  "name": "Trail-Chaser-Hiking-App",
+  "version": "1.0.0",
+  "description": "This is Project 1 for UW Coding Bootcamp. Introducing your new hiking buddy!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeattleSal/Trail-Chaser-Hiking-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SeattleSal/Trail-Chaser-Hiking-App/issues"
+  },
+  "homepage": "https://github.com/SeattleSal/Trail-Chaser-Hiking-App#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

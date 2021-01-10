@@ -12,6 +12,7 @@ header {
 }
 
 section {
+    margin: auto;
     background-color: var(--transparent-bg);
     border-radius: 0 .25rem .25rem .25rem;
 }

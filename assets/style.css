@@ -10,6 +10,19 @@ html {
     background-attachment: fixed;
 } */
 
+header {
+    background-color: rgba(60, 60, 60, 0.8);
+}
+
+nav {
+    border-bottom: none !important;
+}
+
+.fa-mountain {
+    font-size: .85rem;
+    color: var(--bulma-primary);
+}
+
 /* SP - I moved the background stuff to the body, I couldn't get it to show up with it in the html tag using bootstrap */
 body {
     font-family: 'Indie Flower', cursive;
@@ -19,7 +32,7 @@ body {
     background-attachment: fixed;
 }
 
-#results .card {
+#results .card, #buttons {
     max-width: 75%;
     margin: 0 auto 10px;
     border-radius: 4px;
@@ -92,7 +105,7 @@ body {
     flex-wrap: wrap;
 }
 
-#next {
-    margin-left: 9rem;
+#next, #again, #prev-btn {
     margin-bottom: 1rem;
+    width:25%;
 }

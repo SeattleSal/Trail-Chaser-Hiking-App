@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express');
 const exphbs = require('express-handlebars');
 
@@ -16,8 +18,8 @@ app.set("view engine", "handlebars");
 
 // Routes
 // require("./app/routes/api-routes.js")(app);
-require('./app/routes/html-routes')(app)
+require('./routes/html-routes')(app)
 
 app.listen(PORT, () => {
-    console.log(`App listening on PORT: ${PORT}`)
+    console.log(`App listening on PORT: https://localhost/${PORT}`)
 });
